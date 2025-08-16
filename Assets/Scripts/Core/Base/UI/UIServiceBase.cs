@@ -5,7 +5,7 @@ namespace MiningFarm.Core.Base
 {
     public abstract class UIServiceBase : MonoBehaviour
     {
-        public async UniTask InitializeAsync()
+        public virtual async UniTask InitializeAsync()
         {
         }
     }

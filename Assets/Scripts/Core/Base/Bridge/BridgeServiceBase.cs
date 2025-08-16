@@ -20,7 +20,7 @@ namespace MiningFarm.Core.Base
             ModuleConfig = moduleConfig;
         }
         
-        public async UniTask InitializeAsync()
+        public virtual async UniTask InitializeAsync()
         {
             UIService = DiContainer.InstantiatePrefabForComponent<TUIService>(ModuleConfig.UIServicePrefab, parentTransform: null);
             

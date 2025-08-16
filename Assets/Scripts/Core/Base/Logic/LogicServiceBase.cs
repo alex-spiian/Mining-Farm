@@ -4,7 +4,7 @@ namespace MiningFarm.Core.Base
 {
     public abstract class LogicServiceBase
     {
-        public async UniTask InitializeAsync()
+        public virtual async UniTask InitializeAsync()
         {
         }
     }
