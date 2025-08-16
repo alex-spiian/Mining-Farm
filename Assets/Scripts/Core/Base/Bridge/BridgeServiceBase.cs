@@ -1,0 +1,35 @@
+using System.Threading.Tasks;
+using MiningFarm.Core.Base.Configs;
+using MiningFarm.Core.Base.Interfaces;
+using MiningFarm.Core.Base.Logic;
+using MiningFarm.Core.Base.UI;
+using Zenject;
+
+namespace MiningFarm.Core.Base.Bridge
+{
+    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : IModuleInitializeAsync 
+        where TLogicService : LogicServiceBase 
+        where TUIService : UIServiceBase
+        where TModuleConfig : ModuleConfigBase
+    {
+        protected DiContainer DiContainer;
+        protected TLogicService LogicService;
+        protected TModuleConfig ModuleConfig;
+        protected TUIService UIService;
+
+        public BridgeServiceBase(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig)
+        {
+            DiContainer = diContainer;
+            LogicService = logicService;
+            ModuleConfig = moduleConfig;
+        }
+        
+        public async Task InitializeAsync()
+        {
+            UIService = DiContainer.InstantiatePrefabForComponent<TUIService>(ModuleConfig.UIServicePrefab, parentTransform: null);
+            
+            await LogicService.InitializeAsync();
+            await UIService.InitializeAsync();
+        }
+    }
+}
