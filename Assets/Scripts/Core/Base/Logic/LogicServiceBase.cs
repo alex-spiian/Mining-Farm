@@ -1,10 +1,10 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace MiningFarm.Core.Base.Logic
 {
     public abstract class LogicServiceBase
     {
-        public async Task InitializeAsync()
+        public async UniTask InitializeAsync()
         {
         }
     }

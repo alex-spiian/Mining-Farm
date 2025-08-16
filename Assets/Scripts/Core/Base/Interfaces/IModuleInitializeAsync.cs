@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace MiningFarm.Core.Base.Interfaces
 {
     public interface IModuleInitializeAsync
     {
-        public Task InitializeAsync();
+        public UniTask InitializeAsync();
     }
 }

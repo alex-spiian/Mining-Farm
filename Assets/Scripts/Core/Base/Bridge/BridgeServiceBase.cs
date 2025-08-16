@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using MiningFarm.Core.Base.Configs;
 using MiningFarm.Core.Base.Interfaces;
 using MiningFarm.Core.Base.Logic;
@@ -24,7 +24,7 @@ namespace MiningFarm.Core.Base.Bridge
             ModuleConfig = moduleConfig;
         }
         
-        public async Task InitializeAsync()
+        public async UniTask InitializeAsync()
         {
             UIService = DiContainer.InstantiatePrefabForComponent<TUIService>(ModuleConfig.UIServicePrefab, parentTransform: null);
             
