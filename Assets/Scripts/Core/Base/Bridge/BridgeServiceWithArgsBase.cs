@@ -1,10 +1,6 @@
-using MiningFarm.Core.Base.Configs;
-using MiningFarm.Core.Base.Interfaces;
-using MiningFarm.Core.Base.Logic;
-using MiningFarm.Core.Base.UI;
 using Zenject;
 
-namespace MiningFarm.Core.Base.Bridge
+namespace MiningFarm.Core.Base
 {
     public abstract class BridgeServiceWithArgsBase<TLogicService, TUIService, TModuleConfig> : BridgeServiceBase<TLogicService, TUIService, TModuleConfig>, IModuleArgsSetter
         where TModuleConfig : ModuleConfigBase 

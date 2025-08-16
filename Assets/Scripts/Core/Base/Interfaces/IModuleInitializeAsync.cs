@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace MiningFarm.Core.Base.Interfaces
+namespace MiningFarm.Core.Base
 {
     public interface IModuleInitializeAsync
     {

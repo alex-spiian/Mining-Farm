@@ -1,11 +1,7 @@
 using Cysharp.Threading.Tasks;
-using MiningFarm.Core.Base.Configs;
-using MiningFarm.Core.Base.Interfaces;
-using MiningFarm.Core.Base.Logic;
-using MiningFarm.Core.Base.UI;
 using Zenject;
 
-namespace MiningFarm.Core.Base.Bridge
+namespace MiningFarm.Core.Base
 {
     public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : IModuleInitializeAsync 
         where TLogicService : LogicServiceBase 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiningFarm.Core.Base.Configs
+namespace MiningFarm.Core.Base
 {
     public abstract class ModuleConfigBase : ScriptableObject
     {

@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace MiningFarm.Core.Base.UI
+namespace MiningFarm.Core.Base
 {
     public abstract class UIServiceBase : MonoBehaviour
     {

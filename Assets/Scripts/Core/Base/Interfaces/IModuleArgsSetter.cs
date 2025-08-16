@@ -1,4 +1,4 @@
-namespace MiningFarm.Core.Base.Interfaces
+namespace MiningFarm.Core.Base
 {
     public interface IModuleArgsSetter
     {

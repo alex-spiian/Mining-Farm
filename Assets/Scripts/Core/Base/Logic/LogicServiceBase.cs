@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace MiningFarm.Core.Base.Logic
+namespace MiningFarm.Core.Base
 {
     public abstract class LogicServiceBase
     {
