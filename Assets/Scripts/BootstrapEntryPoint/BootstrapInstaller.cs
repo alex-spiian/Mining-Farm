@@ -1,3 +1,4 @@
+using MiningFarm.WindowService;
 using Zenject;
 
 namespace MiningFarm.BootstrapEntryPoint
@@ -7,6 +8,8 @@ namespace MiningFarm.BootstrapEntryPoint
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<Bootstrap>().AsSingle().NonLazy();
+            
+            Container.BindInterfacesAndSelfTo<WindowsLogicService>().AsSingle();
         }
     }
 }

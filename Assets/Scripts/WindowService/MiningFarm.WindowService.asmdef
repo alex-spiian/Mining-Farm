@@ -1,10 +1,11 @@
 {
-    "name": "MiningFarm.Bootstrap",
+    "name": "MiningFarm.WindowService",
     "rootNamespace": "",
     "references": [
-        "Zenject",
-        "MiningFarm.WindowService",
-        "MiningFarm.Core"
+        "MiningFarm.Core",
+        "MiningFarm.Common",
+        "UniTask",
+        "Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
