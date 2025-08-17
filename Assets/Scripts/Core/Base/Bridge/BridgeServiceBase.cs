@@ -1,19 +1,23 @@
+using System;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
 namespace MiningFarm.Core.Base
 {
-    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : IModuleInitializeAsync 
+    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : IModuleInitializeAsync, IDisposable
         where TLogicService : LogicServiceBase 
         where TUIService : UIServiceBase
         where TModuleConfig : ModuleConfigBase
     {
         protected DiContainer DiContainer;
         protected TLogicService LogicService;
-        protected TModuleConfig ModuleConfig;
         protected TUIService UIService;
+        protected TModuleConfig ModuleConfig;
+        
+        private bool _isInitialized;
 
-        public BridgeServiceBase(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig)
+        [Inject]
+        public void Construct(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig)
         {
             DiContainer = diContainer;
             LogicService = logicService;
@@ -26,6 +30,24 @@ namespace MiningFarm.Core.Base
             
             await LogicService.InitializeAsync();
             await UIService.InitializeAsync();
+            
+            _isInitialized = true;
+        }
+
+        public virtual bool IsInitialized()
+        {
+            return _isInitialized;
+        }
+
+        public virtual async UniTask CloseAsync()
+        {
+            await UIService.CloseAsync();
+            await LogicService.CloseAsync();
+        }
+
+        public virtual void Dispose()
+        {
+            LogicService.Dispose();
         }
     }
 }
