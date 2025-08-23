@@ -181,8 +181,6 @@ namespace MiningFarm.WindowService
             return _windowTypesNoScene.Contains(windowTypes);
         }
         
-        protected override string GetTag() => nameof(WindowsLogicService);
-
         #region Signals
 
         private void OnOpenedWindow(OpenWindowSignal openWindowSignal)

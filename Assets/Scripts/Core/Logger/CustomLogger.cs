@@ -30,7 +30,8 @@ namespace Core.Logger
         
         private string FormatMessage(string message, string tag)
         {
-            return $"[{tag.ToCyan()}] {message}";
+            tag = $"[{tag}] -";
+            return $"{tag.ToCyan()} {message}";
         }
     }
 }

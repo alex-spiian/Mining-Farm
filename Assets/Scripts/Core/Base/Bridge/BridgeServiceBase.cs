@@ -5,14 +5,13 @@ using Zenject;
 
 namespace MiningFarm.Core.Base
 {
-    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : IModuleInitializeAsync, IDisposable
+    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : Loggable, IModuleInitializeAsync, IDisposable
         where TLogicService : LogicServiceBase 
         where TUIService : UIServiceBase
         where TModuleConfig : ModuleConfigBase
     {
         protected DiContainer DiContainer;
         protected SignalBus SignalBus;
-        protected ICustomLogger Logger;
         
         protected TLogicService LogicService;
         protected TUIService UIService;
@@ -21,13 +20,12 @@ namespace MiningFarm.Core.Base
         private bool _isInitialized;
 
         [Inject]
-        public void Construct(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig, SignalBus signalBus, ICustomLogger logger)
+        public void Construct(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig, SignalBus signalBus)
         {
             DiContainer = diContainer;
             LogicService = logicService;
             ModuleConfig = moduleConfig;
             SignalBus = signalBus;
-            Logger = logger;
         }
         
         public virtual async UniTask InitializeAsync()
@@ -60,7 +58,5 @@ namespace MiningFarm.Core.Base
         
         protected virtual void Subscribe() { }
         protected virtual void Unsubscribe() { }
-        
-        protected abstract string GetTag();
     }
 }

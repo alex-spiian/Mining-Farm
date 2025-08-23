@@ -7,25 +7,18 @@ using Zenject;
 
 namespace MiningFarm.WindowService
 {
-    public class SceneLoader
+    public class SceneLoader : Loggable
     {
         public bool IsSceneLoading => _isLoading;
         
         private SceneComponentFinder _sceneComponentFinder = new();
-        private ICustomLogger _logger;
         private bool _isLoading;
-
-        [Inject]
-        public void Construct(ICustomLogger logger)
-        {
-            _logger = logger;
-        }
-
+        
         public async UniTask<IModuleInitializeAsync> LoadScene(WindowType types, object args)
         {
             if (types == WindowType.None)
             {
-                _logger.LogError($"Scene loading error, Scene name = {types}", GetTag());
+                Logger.LogError($"Scene loading error, Scene name = {types}", GetTag());
                 return null;
             }
             
@@ -46,13 +39,13 @@ namespace MiningFarm.WindowService
             var sceneContext = _sceneComponentFinder.GetComponentInSceneChildren<SceneContext>(sceneName);
             if (sceneContext == null)
             {
-                _logger.LogError($"SceneContext not found in scene {sceneName}", GetTag());
+                Logger.LogError($"SceneContext not found in scene {sceneName}", GetTag());
                 return null;
             }
 
             if (sceneContext.Container.TryResolve<IModuleInitializeAsync>() is not { } moduleComponent)
             {
-                _logger.LogError($"Bad configuration. IModuleInitializeAsync not found in scene {sceneName}.", GetTag());
+                Logger.LogError($"Bad configuration. IModuleInitializeAsync not found in scene {sceneName}.", GetTag());
                 return null;
             }
 
@@ -70,7 +63,5 @@ namespace MiningFarm.WindowService
                 moduleArgsSetter.SetArgs(args);
             }
         }
-        
-        private string GetTag() => nameof(SceneLoader);
     }
 }

@@ -2,22 +2,13 @@ using System;
 using System.Collections.Generic;
 using Core.Logger;
 using UnityEngine.UI;
-using Zenject;
 
 namespace MiningFarm.Core.Base
 {
-    public class UIInputHandler
+    public class UIInputHandler : Loggable
     {
         private readonly Dictionary<string, Button> _buttons = new();
         private readonly Dictionary<string, Action> _actions = new();
-        
-        private ICustomLogger _logger;
-
-        [Inject]
-        public void Construct(ICustomLogger logger)
-        {
-            _logger = logger;
-        }
 
         public void RegisterButton(string name, Button button, Action action)
         {
@@ -51,8 +42,9 @@ namespace MiningFarm.Core.Base
 
             button.onClick.AddListener(() => InvokeAction(name));
         }
-        
-        public void RegisterButton<T1, T2, T3>(string name, Button button, Action<T1, T2, T3> action, T1 arg1, T2 arg2,  T3 arg3)
+
+        public void RegisterButton<T1, T2, T3>(string name, Button button, Action<T1, T2, T3> action, T1 arg1, T2 arg2,
+            T3 arg3)
         {
             if (_buttons.ContainsKey(name))
                 UnregisterButton(name);
@@ -79,6 +71,7 @@ namespace MiningFarm.Core.Base
             {
                 button.Value.onClick.RemoveAllListeners();
             }
+
             _buttons.Clear();
             _actions.Clear();
         }
@@ -91,10 +84,8 @@ namespace MiningFarm.Core.Base
             }
             else
             {
-                _logger.LogWarning($"No action found for button: {name}", GetTag());
+                Logger.LogWarning($"No action found for button: {name}", GetTag());
             }
         }
-        
-        private string GetTag() => nameof(UIInputHandler);
     }
 }

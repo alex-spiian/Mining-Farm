@@ -6,15 +6,13 @@ using Zenject;
 
 namespace MiningFarm.WindowService
 {
-    public class WindowLoader
+    public class WindowLoader : Loggable
     {
         private DiContainer _diContainer;
-        private ICustomLogger _logger;
 
         [Inject]
-        public void Construct(DiContainer diContainer, ICustomLogger logger)
+        public void Construct(DiContainer diContainer)
         {
-            _logger = logger;
             _diContainer = diContainer;
         }
         
@@ -27,8 +25,8 @@ namespace MiningFarm.WindowService
             }
             catch (Exception e)
             {
-                _logger.LogWarning("Can't close window " + moduleComponent, GetTag());
-                _logger.LogException(e, GetTag());
+                Logger.LogWarning("Can't close window " + moduleComponent, GetTag());
+                Logger.LogException(e, GetTag());
             }
         }
 
@@ -45,7 +43,5 @@ namespace MiningFarm.WindowService
             await moduleComponent.InitializeAsync();
             return moduleComponent;
         }
-        
-        private string GetTag() => nameof(WindowLoader);
     }
 }

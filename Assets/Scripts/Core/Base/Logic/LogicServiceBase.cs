@@ -5,18 +5,16 @@ using Zenject;
 
 namespace MiningFarm.Core.Base
 {
-    public abstract class LogicServiceBase : IDisposable
+    public abstract class LogicServiceBase : Loggable, IDisposable
     {
         protected SignalBus SignalBus;
         protected DiContainer DiContainer;
-        protected ICustomLogger Logger;
 
         [Inject]
-        public void Construct(DiContainer diContainer, SignalBus signalBus, ICustomLogger logger)
+        public void Construct(DiContainer diContainer, SignalBus signalBus)
         {
             DiContainer = diContainer;
             SignalBus = signalBus;
-            Logger = logger;
         }
 
         public virtual UniTask InitializeAsync()
@@ -34,6 +32,5 @@ namespace MiningFarm.Core.Base
         public virtual void Dispose() { }
         protected virtual void Subscribe() { }
         protected virtual void Unsubscribe() { }
-        protected abstract string GetTag();
     }
 }
