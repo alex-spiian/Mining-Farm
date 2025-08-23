@@ -37,6 +37,7 @@ namespace MiningFarm.Core.Base
             await LogicService.InitializeAsync();
             await UIService.InitializeAsync();
             
+            Subscribe();
             _isInitialized = true;
         }
 
@@ -47,6 +48,7 @@ namespace MiningFarm.Core.Base
 
         public virtual async UniTask CloseAsync()
         {
+            Unsubscribe();
             await UIService.CloseAsync();
             await LogicService.CloseAsync();
         }
@@ -55,6 +57,9 @@ namespace MiningFarm.Core.Base
         {
             LogicService.Dispose();
         }
+        
+        protected virtual void Subscribe() { }
+        protected virtual void Unsubscribe() { }
         
         protected abstract string GetTag();
     }

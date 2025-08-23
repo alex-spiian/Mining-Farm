@@ -21,15 +21,19 @@ namespace MiningFarm.Core.Base
 
         public virtual UniTask InitializeAsync()
         {
+            Subscribe();
             return UniTask.CompletedTask;
         }
 
         public virtual UniTask CloseAsync()
         {
+            Unsubscribe();
             return UniTask.CompletedTask;
         }
         
         public virtual void Dispose() { }
+        protected virtual void Subscribe() { }
+        protected virtual void Unsubscribe() { }
         protected abstract string GetTag();
     }
 }
