@@ -1,7 +1,7 @@
+using Core.Logger;
 using Cysharp.Threading.Tasks;
 using MiningFarm.Core.Base;
 using MiningFarm.Enums;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -11,14 +11,21 @@ namespace MiningFarm.WindowService
     {
         public bool IsSceneLoading => _isLoading;
         
-        private SceneComponentFinder _sceneComponentFinder;
+        private SceneComponentFinder _sceneComponentFinder = new();
+        private ICustomLogger _logger;
         private bool _isLoading;
+
+        [Inject]
+        public void Construct(ICustomLogger logger)
+        {
+            _logger = logger;
+        }
 
         public async UniTask<IModuleInitializeAsync> LoadScene(WindowType types, object args)
         {
             if (types == WindowType.None)
             {
-                Debug.LogError($"Scene loading error, Scene name = {types}");
+                _logger.LogError($"Scene loading error, Scene name = {types}", GetTag());
                 return null;
             }
             
@@ -39,13 +46,13 @@ namespace MiningFarm.WindowService
             var sceneContext = _sceneComponentFinder.GetComponentInSceneChildren<SceneContext>(sceneName);
             if (sceneContext == null)
             {
-                Debug.LogError($"SceneContext not found in scene {sceneName}");
+                _logger.LogError($"SceneContext not found in scene {sceneName}", GetTag());
                 return null;
             }
 
             if (sceneContext.Container.TryResolve<IModuleInitializeAsync>() is not { } moduleComponent)
             {
-                Debug.LogError($"Bad configuration. IModuleInitializeAsync not found in scene {sceneName}.");
+                _logger.LogError($"Bad configuration. IModuleInitializeAsync not found in scene {sceneName}.", GetTag());
                 return null;
             }
 
@@ -63,5 +70,7 @@ namespace MiningFarm.WindowService
                 moduleArgsSetter.SetArgs(args);
             }
         }
+        
+        private string GetTag() => nameof(SceneLoader);
     }
 }

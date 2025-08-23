@@ -6,7 +6,6 @@ using Cysharp.Threading.Tasks;
 using MiningFarm.Core.Base;
 using MiningFarm.Enums;
 using MiningFarm.Signals;
-using UnityEngine;
 
 namespace MiningFarm.WindowService
 {
@@ -45,7 +44,7 @@ namespace MiningFarm.WindowService
             }
             catch (Exception e)
             {
-                Debug.Log(e.Message);
+                Logger.LogException(e, GetTag());
             }
 
             foreach (var type in types)
@@ -68,7 +67,7 @@ namespace MiningFarm.WindowService
             {
                 if (value != WindowType.None && !_windowsMap.ContainsKey(value))
                 {
-                    Debug.LogWarning("Can't find window " + value);
+                    Logger.LogWarning("Can't find window " + value, GetTag());
                 }
             }
         }
@@ -91,10 +90,10 @@ namespace MiningFarm.WindowService
         {
             if (AssertOpenWindow(types))
             {
-                Debug.LogWarning("Can't open window during existing transition "+types);
+                Logger.LogWarning("Can't open window during existing transition "+types, GetTag());
                 return;
             }
-            Debug.Log("Open "+types);
+            Logger.Log("Open "+types, GetTag());
             _metadataQueue.Add(new Metadata(types, args));
 
             if (_metadataQueue.Count > K_MAX_COUNT)
@@ -109,7 +108,7 @@ namespace MiningFarm.WindowService
             if (_metadataQueue.Count == 0 || _metadataQueue.LastOrDefault().Type != types)
                 return;
 
-            Debug.Log("Close "+types);
+            Logger.Log("Close "+types, GetTag());
             _metadataQueue.LastOrDefault().IsNeedToClose = true;
             Process().Forget();
         }
@@ -181,6 +180,8 @@ namespace MiningFarm.WindowService
         {
             return _windowTypesNoScene.Contains(windowTypes);
         }
+        
+        protected override string GetTag() => nameof(WindowsLogicService);
 
         #region Signals
 

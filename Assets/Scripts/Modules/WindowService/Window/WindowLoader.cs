@@ -1,7 +1,7 @@
 using System;
+using Core.Logger;
 using Cysharp.Threading.Tasks;
 using MiningFarm.Core.Base;
-using UnityEngine;
 using Zenject;
 
 namespace MiningFarm.WindowService
@@ -9,10 +9,12 @@ namespace MiningFarm.WindowService
     public class WindowLoader
     {
         private DiContainer _diContainer;
+        private ICustomLogger _logger;
 
         [Inject]
-        public void Inject(DiContainer diContainer)
+        public void Construct(DiContainer diContainer, ICustomLogger logger)
         {
+            _logger = logger;
             _diContainer = diContainer;
         }
         
@@ -25,8 +27,8 @@ namespace MiningFarm.WindowService
             }
             catch (Exception e)
             {
-                Debug.LogWarning("Can't close window " + moduleComponent);
-                Debug.LogException(e);
+                _logger.LogWarning("Can't close window " + moduleComponent, GetTag());
+                _logger.LogException(e, GetTag());
             }
         }
 
@@ -43,5 +45,7 @@ namespace MiningFarm.WindowService
             await moduleComponent.InitializeAsync();
             return moduleComponent;
         }
+        
+        private string GetTag() => nameof(WindowLoader);
     }
 }

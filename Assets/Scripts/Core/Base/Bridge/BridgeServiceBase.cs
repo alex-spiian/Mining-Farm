@@ -1,4 +1,5 @@
 using System;
+using Core.Logger;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -10,6 +11,9 @@ namespace MiningFarm.Core.Base
         where TModuleConfig : ModuleConfigBase
     {
         protected DiContainer DiContainer;
+        protected SignalBus SignalBus;
+        protected ICustomLogger Logger;
+        
         protected TLogicService LogicService;
         protected TUIService UIService;
         protected TModuleConfig ModuleConfig;
@@ -17,11 +21,13 @@ namespace MiningFarm.Core.Base
         private bool _isInitialized;
 
         [Inject]
-        public void Construct(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig)
+        public void Construct(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig, SignalBus signalBus, ICustomLogger logger)
         {
             DiContainer = diContainer;
             LogicService = logicService;
             ModuleConfig = moduleConfig;
+            SignalBus = signalBus;
+            Logger = logger;
         }
         
         public virtual async UniTask InitializeAsync()
@@ -49,5 +55,7 @@ namespace MiningFarm.Core.Base
         {
             LogicService.Dispose();
         }
+        
+        protected abstract string GetTag();
     }
 }
