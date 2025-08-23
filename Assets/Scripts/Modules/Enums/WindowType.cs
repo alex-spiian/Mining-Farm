@@ -1,4 +1,4 @@
-namespace MiningFarm.Common.Enums
+namespace MiningFarm.Enums
 {
     public enum WindowType
     {

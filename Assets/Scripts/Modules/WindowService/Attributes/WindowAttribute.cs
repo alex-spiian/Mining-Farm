@@ -1,5 +1,5 @@
 using System;
-using MiningFarm.Common.Enums;
+using MiningFarm.Enums;
 
 namespace MiningFarm.WindowService
 {

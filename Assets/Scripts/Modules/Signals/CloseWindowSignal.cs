@@ -1,6 +1,6 @@
-using MiningFarm.Common.Enums;
+using MiningFarm.Enums;
 
-namespace MiningFarm.Common.Signals
+namespace MiningFarm.Signals
 {
     public class CloseWindowSignal
     {

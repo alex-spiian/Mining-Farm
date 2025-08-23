@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Cysharp.Threading.Tasks;
-using MiningFarm.Common.Enums;
-using MiningFarm.Common.Signals;
 using MiningFarm.Core.Base;
+using MiningFarm.Enums;
+using MiningFarm.Signals;
 using UnityEngine;
 
 namespace MiningFarm.WindowService

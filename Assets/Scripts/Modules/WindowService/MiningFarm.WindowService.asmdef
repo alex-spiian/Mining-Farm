@@ -3,9 +3,10 @@
     "rootNamespace": "",
     "references": [
         "MiningFarm.Core",
-        "MiningFarm.Common",
         "UniTask",
-        "Zenject"
+        "Zenject",
+        "MiningFarm.Enums",
+        "MiningFarm.Signals"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

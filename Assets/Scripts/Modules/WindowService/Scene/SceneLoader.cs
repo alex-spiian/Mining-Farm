@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
-using MiningFarm.Common.Enums;
 using MiningFarm.Core.Base;
+using MiningFarm.Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
