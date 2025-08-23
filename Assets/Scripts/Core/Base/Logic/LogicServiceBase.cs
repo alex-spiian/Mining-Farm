@@ -18,9 +18,17 @@ namespace MiningFarm.Core.Base
             SignalBus = signalBus;
             Logger = logger;
         }
+
+        public virtual UniTask InitializeAsync()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        public virtual UniTask CloseAsync()
+        {
+            return UniTask.CompletedTask;
+        }
         
-        public virtual async UniTask InitializeAsync() { }
-        public virtual async UniTask CloseAsync() { }
         public virtual void Dispose() { }
         protected abstract string GetTag();
     }
