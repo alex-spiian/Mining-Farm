@@ -1,4 +1,4 @@
 {
   "name": "MiningFarm.Signals",
-  "references":[ "MiningFarm.Enums" ]
+  "references":[ "MiningFarm.Enums", "Zenject" ]
 }
