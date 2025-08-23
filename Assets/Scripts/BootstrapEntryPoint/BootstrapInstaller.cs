@@ -1,3 +1,4 @@
+using Core.Logger;
 using MiningFarm.WindowService;
 using Zenject;
 
@@ -10,6 +11,7 @@ namespace MiningFarm.BootstrapEntryPoint
             Container.BindInterfacesAndSelfTo<Bootstrap>().AsSingle().NonLazy();
             
             Container.BindInterfacesAndSelfTo<WindowsLogicService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CustomLogger>().AsSingle();
         }
     }
 }
