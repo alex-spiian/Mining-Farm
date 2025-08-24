@@ -1,0 +1,4 @@
+{
+  "name": "MiningFarm.Player",
+  "references":[ "GUID:bfecc986075c4c2ab00357a64549640b", "GUID:79446edfaf82421191c047deffb9381b" ]
+}
