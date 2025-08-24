@@ -20,14 +20,27 @@ namespace MiningFarm.WindowService
         private readonly Dictionary<WindowType, Type> _windowsMap = new();
         private readonly HashSet<WindowType> _windowTypesNoScene = new();
 
-        public void Initialize()
+        public override async UniTask InitializeAsync()
         {
             DiContainer.Inject(_sceneLoader);
             DiContainer.Inject(_windowLoader);
             
             InitializeWindowsMap();
+            await base.InitializeAsync();
+        }
+        
+        protected override void Subscribe()
+        {
+            SignalBus.Subscribe<OpenWindowSignal>(OnOpenedWindow);
+            SignalBus.Subscribe<CloseWindowSignal>(OnClosedWindow);
         }
 
+        protected override void Unsubscribe()
+        {
+            SignalBus.Unsubscribe<OpenWindowSignal>(OnOpenedWindow);
+            SignalBus.Unsubscribe<CloseWindowSignal>(OnClosedWindow);
+        }
+        
         private void InitializeWindowsMap()
         {
             List<Type> types = new List<Type>();
@@ -70,20 +83,6 @@ namespace MiningFarm.WindowService
                     Logger.LogWarning("Can't find window " + value, GetTag());
                 }
             }
-        }
-
-        public override async UniTask InitializeAsync()
-        {
-            await base.InitializeAsync();
-            SignalBus.Subscribe<OpenWindowSignal>(OnOpenedWindow);
-            SignalBus.Subscribe<CloseWindowSignal>(OnClosedWindow);
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
-            SignalBus.Unsubscribe<OpenWindowSignal>(OnOpenedWindow);
-            SignalBus.Unsubscribe<CloseWindowSignal>(OnClosedWindow);
         }
 
         private void OpenWindow(WindowType types, object args = null)

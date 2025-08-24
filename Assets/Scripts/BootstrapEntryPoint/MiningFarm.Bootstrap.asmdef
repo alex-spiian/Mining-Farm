@@ -4,7 +4,8 @@
     "references": [
         "Zenject",
         "MiningFarm.WindowService",
-        "MiningFarm.Core"
+        "MiningFarm.Core",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

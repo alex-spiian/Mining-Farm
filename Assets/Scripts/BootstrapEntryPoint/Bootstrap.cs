@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using MiningFarm.WindowService;
 using Zenject;
 
@@ -16,12 +17,12 @@ namespace MiningFarm.BootstrapEntryPoint
         
         public void Initialize()
         {
-            _windowsLogicService.Initialize();
+            _windowsLogicService.InitializeAsync().Forget();
         }
 
         public void Dispose()
         {
-            _windowsLogicService.Dispose();
+            _windowsLogicService.CloseAsync().Forget();
         }
     }
 }
