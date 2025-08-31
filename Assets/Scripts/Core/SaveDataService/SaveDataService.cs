@@ -13,7 +13,7 @@ namespace MiningFarm.Core
             Logger.Log($"Saved data with key {key} of type {nameof(T)}", GetTag());
         }
       
-        private bool Load<T>(string key, out T content)
+        public bool Load<T>(string key, out T content)
         {
             var payLoad= PlayerPrefs.GetString(key);
             content = JsonConvert.DeserializeObject<T>(payLoad);
@@ -24,7 +24,7 @@ namespace MiningFarm.Core
                 return true;
             }
             
-            Logger.LogError($"Can't load data with key {key} of type {nameof(T)}", GetTag());
+            Logger.LogWarning($"Can't load data with key {key} of type {nameof(T)}", GetTag());
             return false;
         }
     }
