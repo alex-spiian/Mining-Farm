@@ -1,12 +1,15 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MiningFarm.Core.Base;
+using TMPro;
 using UnityEngine;
 
 namespace MiningFarm.Login
 {
     public class LoginUIService : UIServiceBase
     {
+        [SerializeField] private TMP_Text _loadingText;
+        
         private readonly CancellationTokenSource _cancellationToken = new();
         
         public async UniTask RunLoading(float duration, System.Action onCompleted = null)
@@ -40,7 +43,7 @@ namespace MiningFarm.Login
         private void UpdatePanelProgress(float progress)
         {
             var clampedProgress = Mathf.Clamp(Mathf.Floor(progress), 0, 100);
-            var text = $"LOADING {clampedProgress}%";
+            _loadingText.text = $"LOADING {clampedProgress}%";
         }
     }
 }
