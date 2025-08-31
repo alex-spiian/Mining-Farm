@@ -5,7 +5,10 @@ using Zenject;
 
 namespace MiningFarm.Core.Base
 {
-    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : Loggable, IModuleInitializeAsync, IDisposable
+    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : Loggable,
+        IModuleInitializeAsync,
+        IDisposable,
+        IInitializable
         where TLogicService : LogicServiceBase 
         where TUIService : UIServiceBase
         where TModuleConfig : ModuleConfigBase
@@ -27,6 +30,14 @@ namespace MiningFarm.Core.Base
             ModuleConfig = moduleConfig;
             SignalBus = signalBus;
         }
+        
+        public void Initialize()
+        {
+            if (IsAutoInitialize)
+                InitializeAsync().Forget();
+        }
+
+        protected abstract bool IsAutoInitialize { get; }
         
         public virtual async UniTask InitializeAsync()
         {
