@@ -1,4 +1,5 @@
 using Core.Logger;
+using MiningFarm.Core;
 using MiningFarm.Core.Base;
 using MiningFarm.WindowService;
 using Zenject;
@@ -23,6 +24,7 @@ namespace MiningFarm.BootstrapEntryPoint
         {
             Container.BindInterfacesAndSelfTo<WindowsLogicService>().AsSingle();
             Container.BindInterfacesAndSelfTo<CustomLogger>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SaveDataService>().AsSingle();
         }
 
         private void BindTransient()

@@ -7,7 +7,7 @@ namespace MiningFarm.Signals
         public WindowType WindowType {get; private set;}
         public object Args {get; private set;}
         
-        public OpenWindowSignal(WindowType windowType, object args)
+        public OpenWindowSignal(WindowType windowType, object args = null)
         {
             WindowType = windowType;
             Args = args;

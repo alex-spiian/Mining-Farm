@@ -1,9 +1,13 @@
 {
-    "name": "MiningFarm.Player",
+    "name": "MiningFarm.Login",
     "rootNamespace": "",
     "references": [
-        "MiningFarm.Enums",
         "MiningFarm.Core",
+        "MiningFarm.Player",
+        "UniTask",
+        "MiningFarm.Enums",
+        "MiningFarm.WindowService",
+        "MiningFarm.Signals",
         "Zenject"
     ],
     "includePlatforms": [],

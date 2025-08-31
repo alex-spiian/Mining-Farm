@@ -13,6 +13,8 @@ namespace MiningFarm.Core.Base
         where TUIService : UIServiceBase
         where TModuleConfig : ModuleConfigBase
     {
+        protected abstract bool IsAutoInitialize { get; }
+
         protected DiContainer DiContainer;
         protected SignalBus SignalBus;
         
@@ -37,8 +39,6 @@ namespace MiningFarm.Core.Base
                 InitializeAsync().Forget();
         }
 
-        protected abstract bool IsAutoInitialize { get; }
-        
         public virtual async UniTask InitializeAsync()
         {
             UIService = DiContainer.InstantiatePrefabForComponent<TUIService>(ModuleConfig.UIServicePrefab, parentTransform: null);
