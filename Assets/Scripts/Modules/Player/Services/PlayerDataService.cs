@@ -7,7 +7,7 @@ namespace MiningFarm.Player
 {
     public class PlayerDataService : LogicServiceBase
     {
-        private const string PLAYER_DATA_KEY = "PlayerDaraKey";
+        private const string PLAYER_DATA_KEY = "PlayerDataKey";
         
         public PlayerData PlayerData { get; private set; }
 

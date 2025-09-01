@@ -20,7 +20,7 @@ namespace MiningFarm.Core
 
             if (content != null)
             {
-                Logger.Log($"Loaded data with key {key}", Tag);
+                Logger.Log($"Loaded data with key {key}. Content {payLoad}", Tag);
                 return true;
             }
             
