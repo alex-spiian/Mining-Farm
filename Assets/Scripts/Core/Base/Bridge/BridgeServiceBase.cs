@@ -5,7 +5,8 @@ using Zenject;
 
 namespace MiningFarm.Core.Base
 {
-    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> : Loggable,
+    public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> 
+        : Loggable,
         IModuleInitializeAsync,
         IDisposable,
         IInitializable
@@ -13,7 +14,12 @@ namespace MiningFarm.Core.Base
         where TUIService : UIServiceBase
         where TModuleConfig : ModuleConfigBase
     {
-        protected abstract bool IsAutoInitialize { get; }
+        /// <summary>
+        /// Determines whether this module should automatically run <see cref="InitializeAsync"/> 
+        /// when constructed by Zenject. 
+        /// If set to <c>true</c>, the module will be initialized eagerly (non-lazy) in the module installer.
+        /// </summary>
+        protected virtual bool IsAutoInitialize { get; set; } = false;
 
         protected DiContainer DiContainer;
         protected SignalBus SignalBus;
