@@ -11,10 +11,10 @@ namespace MiningFarm.WindowService
     {
         public bool IsSceneLoading => _isLoading;
         
-        private SceneComponentFinder _sceneComponentFinder = new();
+        private readonly SceneComponentFinder _sceneComponentFinder = new();
         private bool _isLoading;
         
-        public async UniTask<IModuleInitializeAsync> LoadScene(WindowType types, object args)
+        public async UniTask<IModuleInitializeAsync> LoadSceneAsync(WindowType types, object args)
         {
             if (types == WindowType.None)
             {
@@ -26,8 +26,10 @@ namespace MiningFarm.WindowService
                 return null;
 
             _isLoading = true;
-            SceneManager.LoadScene(types.ToString(), LoadSceneMode.Single);
-            
+
+            var loadingOperation = SceneManager.LoadSceneAsync(types.ToString(), LoadSceneMode.Single);
+            await loadingOperation.ToUniTask();
+
             var moduleComponent = await InitializeSceneComponent(types.ToString(), args);
             _isLoading = false;
 
@@ -52,7 +54,7 @@ namespace MiningFarm.WindowService
             TrySetArgs(args, moduleComponent);
             
             await moduleComponent.InitializeAsync();
-            await UniTask.WaitUntil(() => moduleComponent.IsInitialized());
+            await UniTask.WaitUntil(moduleComponent.IsInitialized);
             return moduleComponent;
         }
         
