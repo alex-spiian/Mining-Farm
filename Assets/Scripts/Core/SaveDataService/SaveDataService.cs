@@ -10,7 +10,7 @@ namespace MiningFarm.Core
         {
             var jsonContent = JsonConvert.SerializeObject(content);
             PlayerPrefs.SetString(key, jsonContent);
-            Logger.Log($"Saved data with key {key} of type {nameof(T)}", GetTag());
+            Logger.Log($"Saved data with key {key} of type {nameof(T)}", Tag);
         }
       
         public bool Load<T>(string key, out T content)
@@ -20,11 +20,11 @@ namespace MiningFarm.Core
 
             if (content != null)
             {
-                Logger.Log($"Loaded data with key {key} of type {nameof(T)}", GetTag());
+                Logger.Log($"Loaded data with key {key} of type {nameof(T)}", Tag);
                 return true;
             }
             
-            Logger.LogWarning($"Can't load data with key {key} of type {nameof(T)}", GetTag());
+            Logger.LogWarning($"Can't load data with key {key} of type {nameof(T)}", Tag);
             return false;
         }
     }

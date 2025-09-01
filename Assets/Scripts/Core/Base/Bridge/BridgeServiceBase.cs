@@ -6,8 +6,7 @@ using Zenject;
 namespace MiningFarm.Core.Base
 {
     public abstract class BridgeServiceBase<TLogicService, TUIService, TModuleConfig> 
-        : Loggable,
-        IModuleInitializeAsync,
+        : IModuleInitializeAsync,
         IDisposable,
         IInitializable
         where TLogicService : LogicServiceBase 
@@ -27,16 +26,25 @@ namespace MiningFarm.Core.Base
         protected TLogicService LogicService;
         protected TUIService UIService;
         protected TModuleConfig ModuleConfig;
+        protected ICustomLogger Logger { get; set; }
+        protected virtual string Tag => GetType().Name;
         
         private bool _isInitialized;
 
         [Inject]
-        public void Construct(DiContainer diContainer, TLogicService logicService, TModuleConfig moduleConfig, SignalBus signalBus)
+        public void Construct(
+            DiContainer diContainer,
+            TLogicService logicService,
+            TModuleConfig moduleConfig,
+            SignalBus signalBus,
+            ICustomLogger logger
+            )
         {
             DiContainer = diContainer;
             LogicService = logicService;
             ModuleConfig = moduleConfig;
             SignalBus = signalBus;
+            Logger = logger;
         }
         
         public void Initialize()

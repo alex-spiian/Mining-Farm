@@ -57,7 +57,7 @@ namespace MiningFarm.WindowService
             }
             catch (Exception e)
             {
-                Logger.LogException(e, GetTag());
+                Logger.LogException(e, Tag);
             }
 
             foreach (var type in types)
@@ -80,7 +80,7 @@ namespace MiningFarm.WindowService
             {
                 if (value != WindowType.None && !_windowsMap.ContainsKey(value))
                 {
-                    Logger.LogWarning("Can't find window " + value, GetTag());
+                    Logger.LogWarning("Can't find window " + value, Tag);
                 }
             }
         }
@@ -89,10 +89,10 @@ namespace MiningFarm.WindowService
         {
             if (AssertOpenWindow(types))
             {
-                Logger.LogWarning("Can't open window during existing transition "+types, GetTag());
+                Logger.LogWarning("Can't open window during existing transition "+types, Tag);
                 return;
             }
-            Logger.Log("Open "+types, GetTag());
+            Logger.Log("Open "+types, Tag);
             _metadataQueue.Add(new Metadata(types, args));
 
             if (_metadataQueue.Count > K_MAX_COUNT)
@@ -107,7 +107,7 @@ namespace MiningFarm.WindowService
             if (_metadataQueue.Count == 0 || _metadataQueue.LastOrDefault().Type != types)
                 return;
 
-            Logger.Log("Close "+types, GetTag());
+            Logger.Log("Close "+types, Tag);
             _metadataQueue.LastOrDefault().IsNeedToClose = true;
             Process().Forget();
         }

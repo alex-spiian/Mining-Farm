@@ -25,8 +25,8 @@ namespace MiningFarm.WindowService
             }
             catch (Exception e)
             {
-                Logger.LogWarning("Can't close window " + moduleComponent, GetTag());
-                Logger.LogException(e, GetTag());
+                Logger.LogWarning("Can't close window " + moduleComponent, Tag);
+                Logger.LogException(e, Tag);
             }
         }
 

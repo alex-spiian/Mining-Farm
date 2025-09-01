@@ -18,7 +18,7 @@ namespace MiningFarm.WindowService
         {
             if (types == WindowType.None)
             {
-                Logger.LogError($"Scene loading error, Scene name = {types}", GetTag());
+                Logger.LogError($"Scene loading error, Scene name = {types}", Tag);
                 return null;
             }
             
@@ -39,13 +39,13 @@ namespace MiningFarm.WindowService
             var sceneContext = _sceneComponentFinder.GetComponentInSceneChildren<SceneContext>(sceneName);
             if (sceneContext == null)
             {
-                Logger.LogError($"SceneContext not found in scene {sceneName}", GetTag());
+                Logger.LogError($"SceneContext not found in scene {sceneName}", Tag);
                 return null;
             }
 
             if (sceneContext.Container.TryResolve<IModuleInitializeAsync>() is not { } moduleComponent)
             {
-                Logger.LogError($"Bad configuration. IModuleInitializeAsync not found in scene {sceneName}.", GetTag());
+                Logger.LogError($"Bad configuration. IModuleInitializeAsync not found in scene {sceneName}.", Tag);
                 return null;
             }
 

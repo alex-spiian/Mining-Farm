@@ -84,7 +84,7 @@ namespace MiningFarm.Core.Base
             }
             else
             {
-                Logger.LogWarning($"No action found for button: {name}", GetTag());
+                Logger.LogWarning($"No action found for button: {name}", Tag);
             }
         }
     }
