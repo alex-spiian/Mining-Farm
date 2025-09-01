@@ -10,11 +10,15 @@ namespace MiningFarm.Login
     {
         [SerializeField] private TMP_Text _loadingText;
         
+        public bool IsLoaderFinished { get; private set; }
+        
         private readonly CancellationTokenSource _cancellationToken = new();
         
         public async UniTask RunLoading(float duration, System.Action onCompleted = null)
         {
+            IsLoaderFinished = false;
             await AnimateProgress(duration, _cancellationToken.Token);
+            IsLoaderFinished = true;
             onCompleted?.Invoke();
         }
 
