@@ -6,7 +6,7 @@ using MiningFarm.WindowService;
 
 namespace MiningFarm.Login
 {
-    [Window(WindowType.Login)]
+    [Scene(WindowType.Login)]
     public class LoginBridgeService : BridgeServiceBase<LoginLogicService, LoginUIService, LoginModuleConfig>, IModuleInitializeAsync
     {
         private const float LOADING_DURATION = 2f;

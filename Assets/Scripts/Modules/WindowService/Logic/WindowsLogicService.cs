@@ -149,7 +149,7 @@ namespace MiningFarm.WindowService
             }
             else
             {
-                await _sceneLoader.LoadScene(metadata.Type, metadata.Args);
+                await _sceneLoader.LoadSceneAsync(metadata.Type, metadata.Args);
             }
 
             if (IsScene(metadata.Type))

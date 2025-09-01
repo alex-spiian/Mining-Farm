@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Game/Login.unity
     guid: d7a07d967aea6439aac1523c9ea0cfb6
   - enabled: 1
-    path: Assets/Scenes/Game/Game.unity
+    path: Assets/Scenes/Game/MiningFarmGame.unity
     guid: 1f23cf924e708423192832ca3ca0e5c2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

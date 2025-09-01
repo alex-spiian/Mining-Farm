@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c43fb572cd94ef386089bd9ebda74ab, type: 3}
+  m_Name: MiningFarmGameModuleConfig
+  m_EditorClassIdentifier: 
+  _uiServicePrefab: {fileID: 7292334085672584338, guid: 464fc7861540c4c888c8b849edec27e3, type: 3}

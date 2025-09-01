@@ -4,5 +4,6 @@ namespace MiningFarm.Enums
     {
         None,
         Login,
+        MiningFarmGame,
     }
 }
