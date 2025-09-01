@@ -5,7 +5,8 @@
         "Zenject",
         "MiningFarm.WindowService",
         "MiningFarm.Core",
-        "UniTask"
+        "UniTask",
+        "MiningFarm.Login"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

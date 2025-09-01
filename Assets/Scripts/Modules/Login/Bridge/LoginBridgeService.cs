@@ -11,8 +11,6 @@ namespace MiningFarm.Login
     {
         private const float LOADING_DURATION = 2f;
 
-        protected override bool IsAutoInitialize => true;
-
         public override async UniTask InitializeAsync()
         {
             await base.InitializeAsync();
@@ -41,6 +39,8 @@ namespace MiningFarm.Login
         {
             await UniTask.WaitUntil(() => UIService.IsLoaderFinished);
             SignalBus.Fire(new OpenWindowSignal(WindowType.MiningFarmGame));
+
+            await CloseAsync();
         }
     }
 }

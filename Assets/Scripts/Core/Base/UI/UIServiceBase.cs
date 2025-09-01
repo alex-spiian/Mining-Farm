@@ -36,6 +36,7 @@ namespace MiningFarm.Core.Base
         public virtual UniTask CloseAsync()
         {
             Unsubscribe();
+            Destroy(gameObject);
             return UniTask.CompletedTask;
         }
 
