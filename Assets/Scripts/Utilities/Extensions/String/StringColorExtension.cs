@@ -1,4 +1,4 @@
-namespace Core.Extensions
+namespace MiningFarm.Utilities.Extensions
 {
     public static class StringColorExtension
     {

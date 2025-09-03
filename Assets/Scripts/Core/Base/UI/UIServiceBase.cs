@@ -1,3 +1,4 @@
+using System;
 using Core.Logger;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -5,7 +6,7 @@ using Zenject;
 
 namespace MiningFarm.Core.Base
 {
-    public abstract class UIServiceBase : MonoBehaviour
+    public abstract class UIServiceBase : MonoBehaviour, IDisposable
     {
         protected SignalBus SignalBus;
         protected DiContainer DiContainer;
@@ -35,9 +36,13 @@ namespace MiningFarm.Core.Base
 
         public virtual UniTask CloseAsync()
         {
-            Unsubscribe();
             Destroy(gameObject);
             return UniTask.CompletedTask;
+        }
+        
+        public virtual void Dispose()
+        {
+            Unsubscribe();
         }
 
         protected virtual void Subscribe() { }

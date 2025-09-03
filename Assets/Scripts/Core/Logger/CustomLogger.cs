@@ -1,5 +1,5 @@
 using System;
-using Core.Extensions;
+using MiningFarm.Utilities.Extensions;
 using UnityEngine;
 
 namespace Core.Logger

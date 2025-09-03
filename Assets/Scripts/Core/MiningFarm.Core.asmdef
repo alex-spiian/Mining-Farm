@@ -4,7 +4,7 @@
     "references": [
         "Zenject",
         "UniTask",
-        "MiningFarm.Extentions"
+        "MiningFarm.Utilities"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

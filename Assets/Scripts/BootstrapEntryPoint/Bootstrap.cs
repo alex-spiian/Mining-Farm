@@ -58,8 +58,8 @@ namespace MiningFarm.BootstrapEntryPoint
             {
                 SignalBus.Fire(new OpenWindowSignal(WindowType.MiningFarmGame));
                 
-                await _loginService.CloseAsync();
                 _loginService.Dispose();
+                await _loginService.CloseAsync();
             }
             catch (Exception e)
             {

@@ -71,14 +71,15 @@ namespace MiningFarm.Core.Base
 
         public virtual async UniTask CloseAsync()
         {
-            Unsubscribe();
             await UIService.CloseAsync();
             await LogicService.CloseAsync();
         }
 
         public virtual void Dispose()
         {
+            Unsubscribe();
             LogicService.Dispose();
+            UIService.Dispose();
         }
         
         protected virtual void Subscribe() { }
