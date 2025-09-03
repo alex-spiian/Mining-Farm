@@ -1,13 +1,15 @@
 using System;
-using Core.Logger;
 using Cysharp.Threading.Tasks;
+using MiningFarm.Core.Base;
+using MiningFarm.Enums;
 using MiningFarm.Login;
+using MiningFarm.Signals;
 using MiningFarm.WindowService;
 using Zenject;
 
 namespace MiningFarm.BootstrapEntryPoint
 {
-    public class Bootstrap : Loggable, IInitializable, IDisposable
+    public class Bootstrap : LogicServiceBase, IInitializable
     {
         private WindowsLogicService _windowsService;
         private LoginBridgeService _loginService;
@@ -19,7 +21,12 @@ namespace MiningFarm.BootstrapEntryPoint
             _loginService = loginBridgeService;
         }
         
-        public async void Initialize()
+        public void Initialize()
+        {
+           InitializeAsync().Forget();
+        }
+
+        public override async UniTask InitializeAsync()
         {
             try
             {
@@ -28,14 +35,37 @@ namespace MiningFarm.BootstrapEntryPoint
             }
             catch (Exception e)
             {
-                var exception = new Exception("Can't initialize bootstrap", e);
+                var exception = new Exception("Failed while initializing bootstrap", e);
                 Logger.LogException(exception, Tag);
             }
+            
+            await base.InitializeAsync();
         }
 
-        public void Dispose()
+        protected override void Subscribe()
         {
-            _windowsService.CloseAsync().Forget();
+            _loginService.LoginCompleted += OnLoginCompleted;
+        }
+
+        protected override void Unsubscribe()
+        {
+            _loginService.LoginCompleted -= OnLoginCompleted;
+        }
+
+        private async void OnLoginCompleted()
+        {
+            try
+            {
+                SignalBus.Fire(new OpenWindowSignal(WindowType.MiningFarmGame));
+                
+                await _loginService.CloseAsync();
+                _loginService.Dispose();
+            }
+            catch (Exception e)
+            {
+                var exception = new Exception("Failed while closing LoginService ", e);
+                Logger.LogException(exception, Tag);
+            }
         }
     }
 }

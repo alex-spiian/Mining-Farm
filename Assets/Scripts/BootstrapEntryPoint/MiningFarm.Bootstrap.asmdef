@@ -6,7 +6,9 @@
         "MiningFarm.WindowService",
         "MiningFarm.Core",
         "UniTask",
-        "MiningFarm.Login"
+        "MiningFarm.Login",
+        "MiningFarm.Signals",
+        "MiningFarm.Enums"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

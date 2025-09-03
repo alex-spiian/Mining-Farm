@@ -1,3 +1,4 @@
+using System;
 using MiningFarm.Core.Base;
 using MiningFarm.Enums;
 using MiningFarm.Player;
@@ -9,7 +10,7 @@ namespace MiningFarm.Login
     {
         private PlayerDataService _playerDataService;
         
-        public event System.Action<LoginType> OnLoginCompleted;
+        public event Action<LoginType> OnLoginCompleted;
 
         [Inject]
         public void Construct(PlayerDataService playerDataService)

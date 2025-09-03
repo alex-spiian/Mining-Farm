@@ -7,7 +7,6 @@
         "UniTask",
         "MiningFarm.Enums",
         "MiningFarm.WindowService",
-        "MiningFarm.Signals",
         "Zenject",
         "Unity.TextMeshPro"
     ],

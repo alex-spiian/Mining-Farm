@@ -1,7 +1,7 @@
+using System;
 using Cysharp.Threading.Tasks;
 using MiningFarm.Core.Base;
 using MiningFarm.Enums;
-using MiningFarm.Signals;
 using MiningFarm.WindowService;
 
 namespace MiningFarm.Login
@@ -9,13 +9,12 @@ namespace MiningFarm.Login
     [Scene(WindowType.Login)]
     public class LoginBridgeService : BridgeServiceBase<LoginLogicService, LoginUIService, LoginModuleConfig>, IModuleInitializeAsync
     {
-        private const float LOADING_DURATION = 2f;
-
+        public event Action LoginCompleted;
         public override async UniTask InitializeAsync()
         {
             await base.InitializeAsync();
 
-            UIService.RunLoading(LOADING_DURATION).Forget();
+            UIService.RunLoading(ModuleConfig.FakeLoadingDuration).Forget();
             LogicService.Login();
         }
         
@@ -38,9 +37,7 @@ namespace MiningFarm.Login
         private async UniTask HandleLoginComplete()
         {
             await UniTask.WaitUntil(() => UIService.IsLoaderFinished);
-            SignalBus.Fire(new OpenWindowSignal(WindowType.MiningFarmGame));
-
-            await CloseAsync();
+            LoginCompleted?.Invoke();
         }
     }
 }

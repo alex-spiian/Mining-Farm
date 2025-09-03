@@ -28,11 +28,14 @@ namespace MiningFarm.Core.Base
 
         public virtual UniTask CloseAsync()
         {
-            Unsubscribe();
             return UniTask.CompletedTask;
         }
         
-        public virtual void Dispose() { }
+        public virtual void Dispose()
+        {
+            Unsubscribe();
+        }
+        
         protected virtual void Subscribe() { }
         protected virtual void Unsubscribe() { }
     }

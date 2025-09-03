@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: LoginModuleConfig
   m_EditorClassIdentifier: 
   _uiServicePrefab: {fileID: 7292334085672584338, guid: 4f70cbb85ea6b4bf3ae0dba45368c0fe, type: 3}
+  _fakeLoadingDuration: 2
