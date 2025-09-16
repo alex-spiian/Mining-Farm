@@ -30,6 +30,14 @@ The main purpose of the project is to demonstrate **scalable modular architectur
     - Income per cycle
     - Progress bar
 
+- **Window Management Service (Core System)**
+  - WindowsLogicService controls all window and scene transitions.
+	- Supports:
+       - Opening/closing UI windows with signals.
+      - Scene-based windows vs. overlay windows.
+      - Queue system for transitions with safety checks.
+	- Built to be extendable and handle complex navigation flows.
+    
 - **Game Field**
   - Contains slots for mining machines.
   - Default: 2 machines + 2 empty slots (expandable).
