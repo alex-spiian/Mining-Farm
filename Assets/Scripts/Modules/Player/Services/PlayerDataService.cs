@@ -49,6 +49,22 @@ namespace MiningFarm.Player
             InitializeWallet();
         }
 
+        protected override void Subscribe()
+        {
+            WalletService.OnWalletChanged += OnWalletChanged;
+        }
+
+        protected override void Unsubscribe()
+        {
+            WalletService.OnWalletChanged -= OnWalletChanged;
+        }
+
+        private void OnWalletChanged(WalletData walletData)
+        {
+            PlayerData.Wallet = walletData;
+            _saveDataService.Save(PLAYER_DATA_KEY, PlayerData);
+        }
+
         private void InitializeWallet()
         {
             WalletService.Initialize(PlayerData.Wallet);

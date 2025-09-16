@@ -7,6 +7,7 @@ namespace MiningFarm.Player
     public class WalletService : LogicServiceBase
     {
         public event Action<float, CurrencyType> OnCurrencyChanged; 
+        public event Action<WalletData> OnWalletChanged;
         
         private WalletData _walletData;
 
@@ -15,18 +16,20 @@ namespace MiningFarm.Player
             _walletData = walletData;
         }
         
-        public void AddMoney(int amount, CurrencyType currencyType)
+        public void AddMoney(float amount, CurrencyType currencyType)
         {
             var currenciesData = GetCurrencyData(currencyType);
             currenciesData.Amount += amount;
             OnCurrencyChanged?.Invoke(currenciesData.Amount, currencyType);
+            OnWalletChanged?.Invoke(_walletData);
         }
         
-        public void SpendMoney(int amount, CurrencyType currencyType)
+        public void SpendMoney(float amount, CurrencyType currencyType)
         {
             var currenciesData = GetCurrencyData(currencyType);
             currenciesData.Amount -= amount;
             OnCurrencyChanged?.Invoke(currenciesData.Amount, currencyType);
+            OnWalletChanged?.Invoke(_walletData);
         }
         
         public CurrenciesData GetCurrencyData(CurrencyType currencyType)

@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using MiningFarm.Core.Base;
 using MiningFarm.Enums;
 using MiningFarm.Player;
@@ -16,6 +17,12 @@ namespace MiningFarm.Login
         public void Construct(PlayerDataService playerDataService)
         {
             _playerDataService = playerDataService;
+        }
+        
+        public override async UniTask InitializeAsync()
+        {
+            await base.InitializeAsync();
+            await _playerDataService.InitializeAsync();
         }
         
         public void Login()
