@@ -7,7 +7,8 @@
         "MiningFarm.Enums",
         "UniTask",
         "Zenject",
-        "MiningFarm.Player"
+        "MiningFarm.Player",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
