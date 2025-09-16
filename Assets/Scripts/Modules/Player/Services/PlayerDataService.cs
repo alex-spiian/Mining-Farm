@@ -10,15 +10,17 @@ namespace MiningFarm.Player
         private const string PLAYER_DATA_KEY = "PlayerDataKey";
         
         public PlayerData PlayerData { get; private set; }
+        public WalletService WalletService { get; private set; }
 
         private SaveDataService _saveDataService;
         private PlayerDataConfig _initialPlayerDataConfig;
 
         [Inject]
-        public void Construct(SaveDataService saveDataService, PlayerDataConfig initialPlayerDataConfig)
+        public void Construct(SaveDataService saveDataService, WalletService walletService, PlayerDataConfig initialPlayerDataConfig)
         {
             _initialPlayerDataConfig = initialPlayerDataConfig;
             _saveDataService = saveDataService;
+            WalletService = walletService;
         }
         
         public bool TryLoadPlayerData()
@@ -26,6 +28,7 @@ namespace MiningFarm.Player
             if (_saveDataService.Load<PlayerData>(PLAYER_DATA_KEY, out var playerData))
             {
                 PlayerData = playerData;
+                InitializeWallet();
                 return true;
             }
             
@@ -43,6 +46,12 @@ namespace MiningFarm.Player
             
             _saveDataService.Save(PLAYER_DATA_KEY, playerData);
             PlayerData = playerData;
+            InitializeWallet();
+        }
+
+        private void InitializeWallet()
+        {
+            WalletService.Initialize(PlayerData.Wallet);
         }
     }
 }

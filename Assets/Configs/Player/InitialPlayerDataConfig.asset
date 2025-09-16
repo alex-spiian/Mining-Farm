@@ -18,7 +18,7 @@ MonoBehaviour:
     Wallet:
       Currencies:
       - CurrencyType: 1
-        Amount: 10000
+        Amount: 200
     OwnedMiningMachines:
     - InternalCurrency
     - InternalCurrency
