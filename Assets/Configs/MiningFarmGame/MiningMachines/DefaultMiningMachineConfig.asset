@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: InternalCurrency
   _description: 
   _miningMachineType: 1
+  _currencyType: 1
   _price: 100
   _miningAmountBase: 10
   _miningTimeBase: 5

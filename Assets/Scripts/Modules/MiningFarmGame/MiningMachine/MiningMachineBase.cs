@@ -1,11 +1,12 @@
 using System;
+using MiningFarm.Enums;
 using UnityEngine;
 
 namespace MiningFarm.Game
 {
     public abstract class MiningMachineBase : MonoBehaviour
     {
-        public event Action<float> OnGenerated;
+        public event Action<float, CurrencyType> OnMined;
 
         protected MiningMachineConfig Config;
 
@@ -27,7 +28,7 @@ namespace MiningFarm.Game
             _timer += Time.deltaTime;
             if (_timer >= _miningTime)
             {
-                OnGenerated?.Invoke(_miningAmount);
+                OnMined?.Invoke(_miningAmount, Config.CurrencyType);
                 _timer = 0;
             }
         }

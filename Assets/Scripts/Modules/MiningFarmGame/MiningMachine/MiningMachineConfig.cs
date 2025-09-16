@@ -9,6 +9,7 @@ namespace MiningFarm.Game
         [SerializeField] private string _name;
         [SerializeField] private string _description;
         [SerializeField] private MiningMachineType _miningMachineType;
+        [SerializeField] private CurrencyType _currencyType;
         [SerializeField] private float _price;
         [SerializeField] private float _miningAmountBase;
         [SerializeField] private float _miningTimeBase;
@@ -17,6 +18,7 @@ namespace MiningFarm.Game
         public string Name => _name;
         public string Description => _description;
         public MiningMachineType MiningMachineType => _miningMachineType;
+        public CurrencyType CurrencyType => _currencyType;
         public float Price => _price;
         public float MiningAmountBase => _miningAmountBase;
         public float MiningTimeBase => _miningTimeBase;

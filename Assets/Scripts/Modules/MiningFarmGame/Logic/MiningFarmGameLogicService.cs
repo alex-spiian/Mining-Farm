@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MiningFarm.Core.Base;
 using MiningFarm.Enums;
 using MiningFarm.Player;
@@ -10,6 +11,7 @@ namespace MiningFarm.Game
     {
         private MiningFieldBase _gameField;
         private PlayerDataService _playerDataService;
+        private List<MiningMachineBase> _activeMachines = new();
         
         [Inject]
         public void Construct(PlayerDataService playerDataService)
@@ -25,6 +27,15 @@ namespace MiningFarm.Game
             
             SetMiningMachines(moduleConfig.MiningMachineContainer);
         }
+        
+        public override void Dispose()
+        {
+            foreach (var machine in _activeMachines)
+            {
+                machine.OnMined -= OnMinedCurrency;
+            }
+            _activeMachines.Clear();
+        }
 
         private void SetMiningMachines(MiningMachineContainer moduleConfigMiningMachineContainer)
         {
@@ -36,10 +47,18 @@ namespace MiningFarm.Game
                     var machineConfig = moduleConfigMiningMachineContainer.GetConfig(machineTypeValue);
                     var machine = _gameField.SetSlot(machineConfig.Prefab);
                     machine.Initialize(machineConfig);
+                    machine.OnMined += OnMinedCurrency;
+                    
+                    _activeMachines.Add(machine);
                     continue;
                 }
                 Logger.LogError($"Unknown MiningMachineType: {playerMachines[i]}", Tag);
             }
+        }
+
+        private void OnMinedCurrency(float amount, CurrencyType currencyType)
+        {
+            _playerDataService.WalletService.AddMoney(amount, currencyType);
         }
     }
 }
