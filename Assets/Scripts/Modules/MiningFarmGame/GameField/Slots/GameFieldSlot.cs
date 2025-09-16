@@ -17,11 +17,13 @@ namespace MiningFarm.Game
             _slotVisual.SetActive(IsEmpty);
         }
 
-        public void SetMachine(GameObject machinePrefab)
+        public MiningMachineBase SetMachine(MiningMachineBase machinePrefab)
         {
-            Instantiate(machinePrefab, _miningMachineSpawnPoint);
+            var machine = Instantiate(machinePrefab, _miningMachineSpawnPoint);
             IsEmpty = false;
             _slotVisual.SetActive(IsEmpty);
+            
+            return machine;
         }
 
         public void OnPointerClick(PointerEventData eventData)

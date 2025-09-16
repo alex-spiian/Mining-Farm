@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a33fe9f98b34474b980df8c9f4111f2, type: 3}
+  m_Name: DefaultMiningMachineConfig
+  m_EditorClassIdentifier: 
+  _name: InternalCurrency
+  _description: 
+  _miningMachineType: 1
+  _price: 100
+  _miningAmountBase: 10
+  _miningTimeBase: 5
+  _prefab: {fileID: 5629465063740110663, guid: a73483f91db564384852be4c69189418, type: 3}

@@ -9,5 +9,6 @@ namespace MiningFarm.Player
         public int Level;
         public Guid Guid;
         public WalletData Wallet;
+        public string[] OwnedMiningMachines;
     }
 }

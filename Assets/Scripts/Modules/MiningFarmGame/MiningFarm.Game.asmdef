@@ -6,7 +6,8 @@
         "MiningFarm.WindowService",
         "MiningFarm.Enums",
         "UniTask",
-        "Zenject"
+        "Zenject",
+        "MiningFarm.Player"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

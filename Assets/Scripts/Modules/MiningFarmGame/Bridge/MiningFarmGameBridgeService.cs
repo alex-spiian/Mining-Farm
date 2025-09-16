@@ -11,7 +11,12 @@ namespace MiningFarm.Game
         public override async UniTask InitializeAsync()
         {
             await base.InitializeAsync();
-            Logger.Log("MiningFarmGameBridgeService InitializeAsync", Tag);
+            Generate();
+        }
+
+        private void Generate()
+        {
+            LogicService.Generate(ModuleConfig);
         }
     }
 }

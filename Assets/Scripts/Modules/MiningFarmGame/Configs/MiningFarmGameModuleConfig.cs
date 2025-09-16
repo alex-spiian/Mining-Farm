@@ -7,7 +7,9 @@ namespace MiningFarm.Game
     public class MiningFarmGameModuleConfig : ModuleConfigBase
     {
         [SerializeField] private MiningFieldContainer _miningFieldContainer;
+        [SerializeField] private MiningMachineContainer _miningMachineContainer;
         
         public MiningFieldContainer MiningFieldContainer => _miningFieldContainer;
+        public MiningMachineContainer MiningMachineContainer => _miningMachineContainer;
     }
 }

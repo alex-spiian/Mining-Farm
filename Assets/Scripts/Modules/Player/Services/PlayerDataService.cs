@@ -38,6 +38,7 @@ namespace MiningFarm.Player
             {
                 Guid = Guid.NewGuid(),
                 Wallet = _initialPlayerDataConfig.PlayerData.Wallet,
+                OwnedMiningMachines = _initialPlayerDataConfig.PlayerData.OwnedMiningMachines,
             };
             
             _saveDataService.Save(PLAYER_DATA_KEY, playerData);

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace MiningFarm.Game
 {
+    [CreateAssetMenu(fileName = "MiningFieldContainer", menuName = "ScriptableObject/MiningFarmGame/MiningFieldContainer")]
     public class MiningFieldContainer : ScriptableObject
     {
         [SerializeField] private List<MiningFieldContainerData> _fieldsData;
