@@ -1,0 +1,19 @@
+{
+    "name": "MiningFarm.HUD",
+    "rootNamespace": "",
+    "references": [
+        "MiningFarm.Enums",
+        "Unity.TextMeshPro",
+        "MiningFarm.Player",
+        "MiningFarm.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
