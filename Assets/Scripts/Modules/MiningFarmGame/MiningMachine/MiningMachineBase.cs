@@ -10,6 +10,7 @@ namespace MiningFarm.Game
         [Header("World UI")]
         [SerializeField] private TextMeshPro _amountText;
         [SerializeField] private TextMeshPro _progressText;
+        [SerializeField] private TextMeshPro _nameText;
         
         public event Action<float, CurrencyType> OnMined;
 
@@ -25,6 +26,7 @@ namespace MiningFarm.Game
             
             _miningTime = Config.MiningTimeBase;
             _miningAmount = Config.MiningAmountBase;
+            _nameText.text = Config.Name;
             _timer = 0f;
 
             UpdateUI();

@@ -18,7 +18,7 @@ MonoBehaviour:
     Wallet:
       Currencies:
       - CurrencyType: 1
-        Amount: 200
+        Amount: 50
     OwnedMiningMachines:
-    - InternalCurrency
-    - InternalCurrency
+    - Bitcoin
+    - Ethereum

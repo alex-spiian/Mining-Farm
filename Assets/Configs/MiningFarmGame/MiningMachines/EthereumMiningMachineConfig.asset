@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a33fe9f98b34474b980df8c9f4111f2, type: 3}
+  m_Name: EthereumMiningMachineConfig
+  m_EditorClassIdentifier: 
+  _name: Ethereum
+  _description: 
+  _miningMachineType: 3
+  _currencyType: 1
+  _price: 100
+  _miningAmountBase: 15
+  _miningTimeBase: 60
+  _prefab: {fileID: 7831299534427789116, guid: 4dcb14fce38614ef28e1309b1566d518, type: 3}

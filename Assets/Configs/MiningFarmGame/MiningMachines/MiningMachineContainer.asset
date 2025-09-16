@@ -15,3 +15,7 @@ MonoBehaviour:
   _data:
   - _type: 1
     _config: {fileID: 11400000, guid: a52862b9dfa5245de9d910a18c16c58a, type: 2}
+  - _type: 2
+    _config: {fileID: 11400000, guid: 8d416e456d5c1427892175a0f0e2e8c3, type: 2}
+  - _type: 3
+    _config: {fileID: 11400000, guid: 193f97832cbb64cbd93af5cab67a40c6, type: 2}
